@@ -1,8 +1,3 @@
-PROUT : View{
-	mouseDown{
-		"caca".postln
-	}
-}
 
 // Window.closeAll;
 // w=Window("window title", Rect(0, 0, 400, 400)).alwaysOnTop_(true).front;

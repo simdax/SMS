@@ -28,11 +28,11 @@ GridPlus : UserView {
 	
 	touch{		
 		arg xx, yy;
-		^rects.detect{arg z; z.rect.contains(xx@yy)}.notNil
+		^rects.detectIndex{arg z; z.rect.contains(xx@yy)}
 	}
-	mouseDown{ arg x, y;
-		this.mouseDownAction.value(this, x, y);
-		^this.touch(x, y)
+	mouseDown{ arg x, y, mod, button, click;
+		var indexRect=this.touch(x, y);
+		this.mouseDownAction.value(this, x, y, mod, button, click, indexRect);
 	}
 	durees{
 		^rects.collect({|x| [x.niveauX, x.z] })

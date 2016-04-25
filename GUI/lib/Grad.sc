@@ -23,7 +23,7 @@ Grad : UserView{
 		mel=me;
 		a=mel.collect{[1,2,3].choose}.normalizeSum;
 		b=[0]++a.integrate;
-		//		this.drawFunc_{ this.draw};
+		this.drawFunc_{ this.draw};
 	}
 
 }

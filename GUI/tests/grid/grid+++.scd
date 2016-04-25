@@ -46,7 +46,6 @@ a.addAction({ arg self, k, mod, uni, other;
 }, \keyDownAction);
 
 a.drawFunc=a.drawFunc ++ {
-	"bah alors ??".postln;
 	Color.black.set;
 	Pen.line((y-0.1)@0, (y-0.1)@(a.height-a.range.height));
 	Pen.fillStroke
