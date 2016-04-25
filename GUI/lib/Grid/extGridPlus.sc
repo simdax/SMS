@@ -1,8 +1,7 @@
 + GridPlus{
 	*new{
 		arg	w = Window.new("Grid Plus", Rect(0,0,400,400))
-		.front.acceptsMouseOver_(true)//.plotMode_(\points)
-		,
+		.front.acceptsMouseOver_(true),
 		b= w.bounds;
 		var a=super.new(w, b).init;		
 

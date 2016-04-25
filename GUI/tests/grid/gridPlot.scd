@@ -13,7 +13,7 @@ a.rect= { arg x;
 		pattern: pattern,
 		plot: plot.interactionView.acceptsMouse_(false),
 		movePlot:{ arg self; self.use{
-			~plot.bounds_(~rect)
+			~plot.bounds_(~rect);
 		}
 		},
 	) } <> a.rect;
