@@ -37,7 +37,9 @@ GridPlus : UserView {
 	durees{
 		^rects.collect({|x| [x.niveauX, x.z] })
 	}
-
+	patterns{
+		^rects.collect({|x| x.pattern })
+	}
 	fenetre{
 		^[x.minval,x.maxval]
 	}

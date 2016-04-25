@@ -25,17 +25,17 @@
 			x.movePlot
 		}};
 		a.addAction({
-	arg self, x, y, mod, but, nbClick, ind;
-	if(nbClick>1){
- 		var r=a.rects[ind];
-		r !? {
-			var z=FlowView(nil, Rect(0,0,200,200)).front;
-			r=r.pattern.patternpairs;
-			EnvirGui(r.asDict, r.asDict.size, z, Rect(0,0,100,100));
-			TextView(z, 100@100).string_(r.asString)
-		}
-	}
-}, \mouseDownAction)
+			arg self, x, y, mod, but, nbClick, ind;
+			if(nbClick>1){
+				var r=a.rects[ind];
+				r !? {
+					var z=FlowView(nil, Rect(0,0,200,200)).front;
+					r=r.pattern.patternpairs;
+					EnvirGui(r.asDict, r.asDict.size, z, Rect(0,0,100,100));
+					TextView(z, 100@100).string_(r.asString)
+				}
+			}
+		}, \mouseDownAction)
 
 		^a
 	}

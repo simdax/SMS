@@ -34,8 +34,9 @@ PATGUI : View{
 		{pat=
 		PFF(gt.x,
 			Ptpar(
-				gt.durees.collect({|x|
-					[x[0], Pfindur(x[1], Pmel(x[1])).midi]
+				(gt.durees+++gt.patterns).collect({|x|
+					x.postln;
+					[x[0], Pfindur(x[1], x[2]).midi]
 				}).flat
 			)
 		).play}
