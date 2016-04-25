@@ -7,11 +7,12 @@
 		var a=super.new(w, b).init;		
 
 		a.rect= { arg x;
-			var pattern=Pmel(5);
+			var pattern=Pmel(50);
 			var p=pattern.collect(_.degree).iter.nextN(20,());
 			var plot=Plotter(bounds: Rect(0,0,50,50), parent:a.parent)
 			.value_(p)
 			.plotMode_(\levels)
+			.specs_([-5,5].asSpec)
 			;
 			x++ (
 				pattern: pattern,

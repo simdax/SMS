@@ -7,6 +7,7 @@ a.rect= { arg x;
 	var plot=Plotter(bounds: Rect(0,0,0,0), parent:a.parent)
 	.plotMode_(\levels)
 	.value_(p)
+	.specs_([-10,10].asSpec)
 	;
 	x++ (
 		pattern: pattern,
