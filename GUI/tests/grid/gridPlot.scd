@@ -6,8 +6,7 @@ a.rect= { arg x;
 	var p=pattern.collect(_.degree).iter.nextN(20,());
 	var plot=Plotter(bounds: Rect(0,0,0,0), parent:a.parent)
 	.plotMode_(\levels)
-	.value_(p)
-	.specs_([-10,10].asSpec)
+	//	.value_(p)
 	;
 	x++ (
 		pattern: pattern,
@@ -18,7 +17,8 @@ a.rect= { arg x;
 			{
 				b=b.add(x.degree ! x.dur)
 			};
-			~plot.value_(b.flat)
+			~plot.value_(b.flat);
+			~plot.specs_([-10,10].asSpec)
 		}},
 		plot: plot,
 		plotV: plot.interactionView.acceptsMouse_(false),
@@ -47,11 +47,18 @@ a.addAction({
 
 a.addAction({
 	arg s, x, y, mod, ind;
+	if(ind.notNil){
+		a.rects[ind].patternVal;
+	}
+}, \mouseMoveAction);
+
+a.addAction({
+	arg s, x, y, mod, but, ind;
 	ind.postln;
 	if(ind.notNil){
 		a.rects[ind].patternVal;
 	}
-}, \mouseMoveAction)
+}, \mouseUpAction)
 
 )
 

@@ -38,6 +38,10 @@ GridPlus : UserView {
 		var indexRect=this.touch(x, y);
 		this.mouseMoveAction.value(this, x, y, mod, indexRect);
 	}
+	mouseUp{ arg x, y, mod, button;
+		var indexRect=this.touch(x, y);
+		this.mouseUpAction.value(this, x, y, mod, button, indexRect);
+	}
 	durees{
 		^rects.collect({|x| [x.niveauX, x.z] })
 	}
