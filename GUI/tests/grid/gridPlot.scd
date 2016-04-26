@@ -11,9 +11,19 @@ a.rect= { arg x;
 	;
 	x++ (
 		pattern: pattern,
-		plot: plot.interactionView.acceptsMouse_(false),
+		patternVal:{ arg self; self.use{
+			var a, b, x;
+			a=Pfindur(~z, ~pattern).asStream;
+			while{x=a.next(()); x.notNil}
+			{
+				b=b.add(x.degree ! x.dur)
+			};
+			~plot.value_(b.flat)
+		}},
+		plot: plot,
+		plotV: plot.interactionView.acceptsMouse_(false),
 		movePlot:{ arg self; self.use{
-			~plot.bounds_(~rect);
+			~plotV.bounds_(~rect);
 		}
 		},
 	) } <> a.rect;
@@ -33,7 +43,15 @@ a.addAction({
 			TextView(z, 100@100).string_(r.asString)
 		}
 	}
-}, \mouseDownAction)
+}, \mouseDownAction);
+
+a.addAction({
+	arg s, x, y, mod, ind;
+	ind.postln;
+	if(ind.notNil){
+		a.rects[ind].patternVal;
+	}
+}, \mouseMoveAction)
 
 )
 
