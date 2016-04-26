@@ -1,22 +1,37 @@
 (
 
 a=GridPlus();
+
+
 a.rect= { arg x;
-	var pattern=Pmel(5);
+	var pattern=Pbind(\degree, Array.rand(10, 1,4).pseq,
+		\dur, Array.rand(10, 1,4).pseq 
+	);
 	var p=pattern.collect(_.degree).iter.nextN(20,());
 	var plot=Plotter(bounds: Rect(0,0,0,0), parent:a.parent)
 	.plotMode_(\levels)
-	.value_(p)
-	.specs_([-10,10].asSpec)
 	;
-	x++ (
+	x=x++ (
 		pattern: pattern,
-		plot: plot.interactionView.acceptsMouse_(false),
+		patternVal:{ arg self; self.use{
+			var a, b, x;
+			a=Pfindur(~z, ~pattern).asStream;
+			while{x=a.next(()); x.notNil}
+			{
+				b=b.add(x.degree ! x.dur)
+			};
+			~plot.value_(b.flat);
+		 	~plot.specs_([-10,10].asSpec)
+		}},
+		plot: plot,
+		plotV: plot.interactionView.acceptsMouse_(false),
 		movePlot:{ arg self; self.use{
-			~plot.bounds_(~rect);
+			~plotV.bounds_(~rect);
 		}
 		},
-	) } <> a.rect;
+	);
+	//	x
+} <> a.rect;
 
 a.drawFunc=a.drawFunc++{a.rects.do { |x|
     x.movePlot
@@ -28,12 +43,27 @@ a.addAction({
  		var r=a.rects[ind];
 		r !? {
 			var z=FlowView(nil, Rect(0,0,200,200)).front;
-			r=r.pattern.patternpairs;
-			EnvirGui(r.asDict, r.asDict.size, z, Rect(0,0,100,100));
-			TextView(z, 100@100).string_(r.asString)
+			var dict=r.pattern.patternpairs.asDict;
+			EnvirGui(dict, dict.size, z, Rect(0,0,100,100));
+			PatGui(z, r)
 		}
 	}
-}, \mouseDownAction)
+}, \mouseDownAction);
+
+a.addAction({
+	arg s, x, y, mod, ind;
+	if(ind.notNil){
+		a.rects[ind].patternVal;
+	}
+}, \mouseMoveAction);
+
+a.addAction({
+	arg s, x, y, mod, but, ind;
+	ind.postln;
+	if(ind.notNil){
+		a.rects[ind].patternVal;
+	}
+}, \mouseUpAction)
 
 )
 
