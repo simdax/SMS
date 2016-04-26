@@ -18,7 +18,7 @@ ListGUI{
 	init{
 		arg window=Window("listGUI", Rect(0, 0, 400, 40)).alwaysOnTop_(true).front;
 		view=View(
-			window, window.bounds.width-60@40
+			window, window.bounds
 		)
 		.background_(Color.rand)
 		.mouseDownAction_{arg self;
@@ -30,10 +30,9 @@ ListGUI{
 				rect.bounds.contains(x@y)
 			}.postln
 		};
-		view.addFlowLayout;
-		PopUpMenu(window, Rect(view.bounds.width, 0, 40, 40) )
-		.items_(setBouton);
-	
+		// view.addFlowLayout;
+		// PopUpMenu(window, Rect(view.bounds.width, 0, 40, 40) )
+		// .items_(setBouton);
 		this.draw;
 	}
 	add{ arg item;
@@ -96,6 +95,8 @@ ListGUI{
 }
 
 /*
+
+ListGUI()
 
 a=ListGUI([], focusAction:{"prout".postln});
 a.add(3);
