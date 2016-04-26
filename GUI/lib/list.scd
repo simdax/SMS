@@ -16,13 +16,32 @@ a.action_({"b".postln});
 
 
 (
-a=View().background_(Color.rand);
 
+#b, a=2.collect{View().background_(Color.rand)};
 View(nil, 500@300).layout_(VLayout(
-	[HLayout(),s:3],
-	[ListGUI(), s:2]
+	[HLayout([a, s:2], [b, s:1]),s:3],
+	[c=ListGUI(), s:2]
 )
 ).front;
+([a, b]+++
+[[
+	[["scramble"]],
+	[["reverse?"],["reverse!"]],
+	[["rotate"]]
+],[
+	[["+"]],
+	[["-"]]
+]])
+.collect({|x|
+x[0].layout_(
+	VLayout
+	(*	x[1..].postln.collect({|x|
+		Button().states_(x)
+	})
+	)
+)
+})
+
 )
 
 w=View(nil, 100@100).front;
