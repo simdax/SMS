@@ -11,9 +11,24 @@ PATGUI : View{
 	*new{ arg p=Window("PATGUI", 800@600).front, b=p.bounds.taille;
 		^super.new(p, b).init;
 	}
-	
+	makeButtons{
+		^View().layout_(
+		  	HLayout(
+				[VLayout(
+					View().background_(Color.rand),
+					View().background_(Color.rand)
+				), s:2],
+				[VLayout(
+					View().background_(Color.rand),
+					View().background_(Color.rand),
+					View().background_(Color.rand)
+				),s:3]
+			)
+		)
+	}
 	init{
-		# buttons, save, add, grid =4.collect{View().background_(Color.rand)};
+		# save, add, grid =3.collect{View().background_(Color.rand)};
+		buttons=this.makeButtons;
 		this.parent.layout_(VLayout(
 			[HLayout([grid, s:6.3], [add, s:2]), s:5],
 			[HLayout([buttons, s:6], [save, s:2]), s:2]
