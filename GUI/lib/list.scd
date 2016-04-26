@@ -16,15 +16,16 @@ a.action_({"b".postln});
 
 
 (
-View(nil, 300@300).layout_(VLayout(
+a=View().background_(Color.rand);
+
+View(nil, 500@300).layout_(VLayout(
 	[HLayout(),s:3],
-	[a=View().background_(Color.rand), s:2]
+	[ListGUI(), s:2]
 )
 ).front;
-ListGUI(parent:a)
 )
 
-Window.closeAll;
-w=Window("window title", Rect(0, 0, 400, 400)).alwaysOnTop_(true).front;
-w.addFlowLayout;
-ListGUI(parent:w)
+w=View(nil, 100@100).front;
+a=ListGUI(parent:w)
+
+PopUpMenu().front
