@@ -130,29 +130,35 @@ r{
 
 */
 
+ListGUIPlus{
+	*new{
+		var a, b; var res;		
+		#b, a=2.collect{View().background_(Color.rand)};
+		res=View(nil, 500@300).layout_(VLayout(
+			[HLayout([a, s:2], [b, s:1]),s:3],
+			[ListGUI(), s:2]
+		)
+		).front;
+		([a, b]+++
+			[[
+				[["scramble"]],
+				[["reverse?"],["reverse!"]],
+				[["rotate"]]
+			],[
+				[["+"]],
+				[["-"]]
+			]])
+		.collect({|x|
+			x[0].layout_(
+				VLayout
+				(*	x[1..].postln.collect({|x|
+					Button().states_(x)
+				})
+				)
+			)
+		});
+		^res
+	}
+}
 
-// (
-
-// var nb=3;
-
-// var w=View(nil, Rect(0, 0, 400, (40*nb)+10));
-// var w2=View(nil, w.bounds+Rect(0,0,50,0))
-// .layout_(
-// 	HLayout(VLayout(*nb.collect{Button()}))
-// )
-// .background_(Color.rand());
-// w.addFlowLayout;
-// nb.do{ListGUI(parent:w)};
-// w2.layout.add(w);
-// w2.front
-
-// )
-
-
-// // add button
-
-// MultiListGUI{
-
-// 	*new
-	
-// }
+//ListGUIPlus()

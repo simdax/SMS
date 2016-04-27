@@ -1,3 +1,5 @@
+//MovingRect().front
+
 MovingRect : UserView{
 	var dur, ratio;
 	var onRect=false, rBut=false;

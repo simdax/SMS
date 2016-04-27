@@ -12,16 +12,18 @@ PATGUI : View{
 		^super.new(p, b).init;
 	}
 	makeButtons{
+		var movR;
 		^View().layout_(
 		  	HLayout(
 				[VLayout(
-					View().background_(Color.rand),
-					View().background_(Color.rand)
+					ListGUIPlus(),
+					ListGUIPlus()
 				), s:2],
 				[VLayout(
 					View().background_(Color.rand),
-					View().background_(Color.rand),
-					View().background_(Color.rand)
+					MovingRect(),
+					EnvelopeView().maxHeight_(100)
+					//					View().background_(Color.rand)
 				),s:3]
 			)
 		)
