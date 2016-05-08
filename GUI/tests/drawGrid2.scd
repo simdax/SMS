@@ -19,7 +19,7 @@ w.drawFunc_{
 		y:Array.rand(11, 0,4),
 		offset:0,
 		draw:{ arg self; self.use{
-			var d=DrawGrid(~w.view.bounds.taille.asRect, [0,50].asSpec.grid, [0,10].asSpec.grid).draw;
+			var d=DrawGrid(~w.view.bounds.extent.asRect, [0,50].asSpec.grid, [0,10].asSpec.grid).draw;
 			(~x+++~y).collect({|x|
 				Pen.fillRect(Rect(
 					d.width * x[0],
